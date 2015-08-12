@@ -1,6 +1,6 @@
-angular.module('SampleApp.CountryService', [])
+angular.module('CountryService', [])
 
-app.service('CountryService', function ($http, config, $q) {
+.service('CountryService', function ($http, config, $q) {
   var countries = [];
 
   var that = this;
@@ -11,6 +11,8 @@ app.service('CountryService', function ($http, config, $q) {
         resolve($http.get(config.apiUrl + '/all').then(function (response) {
           countries = response.data;
           return countries;
+        }, function (err) {
+          reject(err);
         }));
       });
   };
@@ -28,7 +30,7 @@ app.service('CountryService', function ($http, config, $q) {
   };
 
   this.getBorderCountries = function (country) {
-    countryPromises = country.borders.map(function(countryCode) {
+    var countryPromises = country.borders.map(function(countryCode) {
       return that.getCountryByCountryCode(countryCode);
     });
     return $q.all(countryPromises);

@@ -7,7 +7,7 @@ angular.module('CountryDetail', [
 .config(function ($routeProvider) {
   $routeProvider.when('/country/:country', {
     controller: 'CountryController as ctrl',
-    templateUrl: 'country_detail.html',
+    templateUrl: 'country_detail.tpl.html',
     resolve: {
       country: function (CountryService, $route) {
         return CountryService.getCountry($route.current.params.country).then(function (country) {
@@ -26,4 +26,4 @@ angular.module('CountryDetail', [
 
 .controller('CountryController', function (country) {
   this.country = country;
-})
+});

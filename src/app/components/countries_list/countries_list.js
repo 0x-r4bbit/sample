@@ -7,7 +7,7 @@ angular.module('CountriesList', [
 .config(function ($routeProvider) {
   $routeProvider.when('/countries', {
     controller: 'CountriesListController as ctrl',
-    template: 'countries_list.html',
+    templateUrl: 'countries_list.tpl.html',
     resolve: {
       countries: function (CountryService) {
         return CountryService.getCountries();
